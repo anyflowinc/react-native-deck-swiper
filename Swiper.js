@@ -73,6 +73,10 @@ class Swiper extends Component {
     })
   }
 
+  getFirstCardIndex = () => {
+    return this.state.firstCardIndex
+  }
+
   calculateCardIndexes = (firstCardIndex, cards) => {
     firstCardIndex = firstCardIndex || 0
     const previousCardIndex = firstCardIndex === 0 ? cards.length - 1 : firstCardIndex - 1
@@ -148,7 +152,7 @@ class Swiper extends Component {
   }
 
   onPanResponderMove = (event, gestureState) => {
-    this.props.onSwiping(this._animatedValueX, this._animatedValueY)
+    this.props.onSwiping(event, gestureState)
 
     let { overlayOpacityHorizontalThreshold, overlayOpacityVerticalThreshold } = this.props
     if (!overlayOpacityHorizontalThreshold) {
@@ -340,7 +344,8 @@ class Swiper extends Component {
 
   resetTopCard = cb => {
     Animated.spring(this.state.pan, {
-      toValue: 0
+      toValue: 0,
+      friction: 5
     }).start(cb)
 
     this.state.pan.setOffset({
