@@ -280,7 +280,8 @@ class Swiper extends Component {
     }
 
     this.setState({
-      labelType: LABEL_TYPES.NONE,
+      // 消していいか？
+      // labelType: LABEL_TYPES.NONE,
       slideGesture: false
     })
   }
