@@ -283,7 +283,8 @@ class Swiper extends Component {
 
     this.setState({
       // 消していいか？
-      // labelType: LABEL_TYPES.NONE,
+      // 消すと、一度触れないとdetailに飛べないようになった
+      labelType: LABEL_TYPES.NONE,
       slideGesture: false
     })
   }
