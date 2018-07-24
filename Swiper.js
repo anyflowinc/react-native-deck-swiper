@@ -36,7 +36,9 @@ class Swiper extends Component {
     const { props, state } = this
     const propsChanged = (
       !isEqual(props.cards, nextProps.cards) ||
-      props.cardIndex !== nextProps.cardIndex
+      props.cardIndex !== nextProps.cardIndex ||
+      // TODO: 変更を検知して更新しないと、ボタンのdisabledが更新されない
+      props.canSwipeBack !== nextProps.canSwipeBack
     )
     const stateChanged = (
       nextState.firstCardIndex !== state.firstCardIndex ||
@@ -733,6 +735,9 @@ class Swiper extends Component {
 
   renderSwipeBackCard = () => {
     const { previousCardIndex } = this.state
+    if (previousCardIndex === -1) {
+      return
+    }
     const { cards } = this.props
     const previousCardStyle = this.calculateSwipeBackCardStyle()
     const previousCard = this.props.renderCard(cards[previousCardIndex])
