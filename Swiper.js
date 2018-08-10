@@ -38,7 +38,11 @@ class Swiper extends Component {
       !isEqual(props.cards, nextProps.cards) ||
       props.cardIndex !== nextProps.cardIndex ||
       // TODO: 変更を検知して更新しないと、ボタンのdisabledが更新されない
-      props.canSwipeBack !== nextProps.canSwipeBack
+      props.canSwipeBack !== nextProps.canSwipeBack ||
+      // TODO: 変更を検知して更新しないと、ストックボタンのラベルが反映されない
+      props.stocks.length !== nextProps.stocks.length ||
+      // 変更検知
+      props.isSwiping !== nextProps.isSwiping
     )
     const stateChanged = (
       nextState.firstCardIndex !== state.firstCardIndex ||
